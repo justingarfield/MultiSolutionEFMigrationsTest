@@ -27,7 +27,7 @@ namespace WebApiProject
         {
 
             services.AddDbContext<SampleDbContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("EFMigrationsExampleDatabase"), b => b.MigrationsAssembly("MultiSolutionEfCoreMigrations.MigrationsProject"))
+                options.UseSqlite(Configuration.GetConnectionString("EFMigrationsExampleDatabase"), b => b.MigrationsAssembly("MigrationsProject"))
             );
 
             services.AddMvc();

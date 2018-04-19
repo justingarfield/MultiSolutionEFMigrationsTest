@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\DataSolution\DataProject\DataProject.csproj" />
+    <ProjectReference Include="..\..\MigrationsSolution\MigrationsProject\MigrationsProject.csproj" />
   </ItemGroup>
 
 </Project>
