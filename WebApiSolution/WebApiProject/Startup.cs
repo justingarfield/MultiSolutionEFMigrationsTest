@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using MultiSolutionEfCoreMigrations.DataProject;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApiProject
 {
@@ -24,12 +26,12 @@ namespace WebApiProject
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddDbContext<SISDbContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("SISDatabase"), b => b.MigrationsAssembly("SIS.Migrations"))
+            services.AddDbContext<SampleDbContext>(options =>
+                options.UseSqlite(Configuration.GetConnectionString("EFMigrationsExampleDatabase"), b => b.MigrationsAssembly("MultiSolutionEfCoreMigrations.MigrationsProject"))
             );
 
             services.AddMvc();
-            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
