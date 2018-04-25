@@ -2,7 +2,15 @@
 
 This repository contains a set of .NET Core Solutions with their own respective projects to showcase and allow screwing around with a mutli-solution, multi-project, build-out of EF Core with EF Core Migrations in-use, targeting SQLLite as the DB provider.
 
-## Setup and run Initial Migration
+## How to use this code
+
+Below are the steps that can be run to use this code in the simplest manner possible.
+I would recommend just doing these steps in order to learn how things are working at a very basic level.
+Then modify things like the Student Model, re-run migrations, apply new migrations, and watch what happens.
+
+### Preparing Solutions for use
+
+These commands are simply to clone this source and build each solution included using the .NET Core CLI. I've included them so you don't have to type all this yourself. If you don't understand these commmands, you should pause and go read up on the dotnet CLI tools.
 
 ```PowerShell
 git clone git@github.com:justingarfield/MultiSolutionEFMigrationsTest.git
@@ -10,11 +18,26 @@ cd MultiSolutionEFMigrationsTest
 dotnet restore DataSolution\DataProject
 dotnet restore MigrationsSolution\MigrationsProject
 dotnet restore WebApiSolution\WebApiProject
+dotnet build .\DataSolution\DataSolution.sln
+dotnet build .\MigrationsSolution\MigrationsSolution.sln
+dotnet build .\WebApiSolution\WebApiSolution.sln
 ```
+
+### Generating initial migration
+
+These commands are how you generate your migrations, passing the WebAPI Project as a startup project to the migrations tooling.
 
 ```PowerShell
 cd MigrationsSolution\MigrationsProject
 dotnet ef migrations --startup-project ..\..\WebApiSolution\WebApiProject\WebApiProject.csproj add IntialMigration
+```
+
+### Applying migrations
+
+These commands are how you apply your current migrations to the database utilized by the WebAPI project. This will differ in most environment as to how the Startup Project provides a connection string to the underlying DbContext, but this at least demonstrates a working example of how to apply them at the most basic level.
+
+```PowerShell
+dotnet ef database update --startup-project ..\..\WebApiSolution\WebApiProject\WebApiProject.csproj
 ```
 
 ## Useful Information
