@@ -37,6 +37,7 @@ dotnet ef migrations --startup-project ..\..\WebApiSolution\WebApiProject\WebApi
 These commands are how you apply your current migrations to the database utilized by the WebAPI project. This will differ in most environment as to how the Startup Project provides a connection string to the underlying DbContext, but this at least demonstrates a working example of how to apply them at the most basic level.
 
 ```PowerShell
+cd MigrationsSolution\MigrationsProject
 dotnet ef database update --startup-project ..\..\WebApiSolution\WebApiProject\WebApiProject.csproj
 ```
 
